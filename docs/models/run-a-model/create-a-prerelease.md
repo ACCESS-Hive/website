@@ -23,8 +23,13 @@ All the other components will remain the same as the official [ACCESS-OM2 releas
 
 ## Prerequisites
 
-* To be a part of required projects specific to the HPC system. For example, models deployed to `Gadi` require access to the `vk83` project to be run.
-* At least `write` access to the Model Deployment Repository.
+- **Join the required projects specific to the HPC system**<br>
+    For models deployed to `Gadi`, join the `vk83` project, by requesting membership on the respective [vk83](https://my.nci.org.au/mancini/project/vk83/join) NCI project pages.
+
+    For more information on joining specific NCI projects, refer to [How to connect to a project](https://opus.nci.org.au/display/Help/How+to+connect+to+a+project).
+
+- **_Write_ permissions to the related Model Deployment Repository**
+    To request write permissions for a specific Model Deployment Repository, please [contact ACCESS-NRI](/about/contact/).
 
 ## The model deployment repository
 
@@ -34,9 +39,6 @@ For example, the deployment of [ACCESS-OM2][om2 config] is controlled by the [AC
 The model deployment repository also enables automatic prerelease build deployments of the model whenever commits are added to one of the repository's open Pull Requests (PR).<br>
 Every commit within the same PR triggers an isolated prerelease build deployment for the same PR (every PR can be seen as a separate development configuration for the model).<br>
 When a PR is merged, the related prereleases are deleted and an official release build is created.
-
-An example of the ACCESS Models automatic deployment workflow is summarised in the image below:
-![Pull Request Process](/assets/create_a_prerelease/PR_Process.svg){: loading="lazy"}
 
 Although the structure of different model deployment repositories can slightly differ, their top-level will always contain:
 
@@ -59,7 +61,7 @@ As mentioned above, prerelease build deployments are triggered by commits within
 The sequence of tasks needed to trigger a pre/release build deployment for a new model feature is detailed below:
 
 #### 1. Clone the repo and create a feature branch
-The first step is to clone the model deployment repository and create a feature branch from its `main` branch, where the new features will be developped.
+The first step is to clone the model deployment repository and create a feature branch from its `main` branch, where the new features will be developed.
 
 To clone the [ACCESS-OM2 deployment repository][om2 repo] and create a feature branch named `update_mom5_dev_build` run:
 ```
