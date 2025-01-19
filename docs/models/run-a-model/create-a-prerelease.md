@@ -22,7 +22,9 @@ All the other components will remain the same as the official [ACCESS-OM2 releas
     The instructions below remain valid (with simple tweaks) for all [ACCESS models].
 
 ## Prerequisites
-<span style="color: red">NOTE: Are there any relevant prerequisites??</span>
+
+* To be a part of required projects specific to the HPC system. For example, models deployed to `Gadi` require access to the `vk83` project to be run.
+* At least `write` access to the Model Deployment Repository.
 
 ## The model deployment repository
 
@@ -54,7 +56,7 @@ The `config` directory contains a single `versions.json` file. This file allows 
 ## Trigger a model pre/release build deployment
 
 As mentioned above, prerelease build deployments are triggered by commits within a model deployment repository's open PR. When the PR is merged, a release build deployment is created.<br>
-The sequence of tasks needed to trigger a pre/release build deployment for a new model feature is detailed below: 
+The sequence of tasks needed to trigger a pre/release build deployment for a new model feature is detailed below:
 
 #### 1. Clone the repo and create a feature branch
 The first step is to clone the model deployment repository and create a feature branch from its `main` branch, where the new features will be developped.
@@ -85,11 +87,11 @@ After the modifications are made, commit the changes to the newly-created featur
 
 In this example, we will change ACCESS-OM2's [MOM5 component] (we will replace it with the version from [MOM5 `development` branch](https://github.com/ACCESS-NRI/MOM5/tree/development)).
 To achieve this, we will:
-    
+
 1. Update the [version of the `mom5` package](https://github.com/ACCESS-NRI/ACCESS-OM2/blob/d907f3314a9956875baaaaf2b4d7b6be6fa81926/spack.yaml#L15) in the `spack.yaml` file with the new version (`@git.development`).
 2. Update the [associated module projection](https://github.com/ACCESS-NRI/ACCESS-OM2/blob/d907f3314a9956875baaaaf2b4d7b6be6fa81926/spack.yaml#L53) to `{name}/development-{hash:7}`.<br>
-   
-    !!! tip 
+
+    !!! tip
         The `{hash:7}` part is used so the module doesn't conflict with other versions.
 
 3. It is also recommended to update the [overall ACCESS-OM2 version](https://github.com/ACCESS-NRI/ACCESS-OM2/blob/d907f3314a9956875baaaaf2b4d7b6be6fa81926/spack.yaml#L8) along with its [associated module projection](https://github.com/ACCESS-NRI/ACCESS-OM2/blob/d907f3314a9956875baaaaf2b4d7b6be6fa81926/spack.yaml#L51).<br>
@@ -181,12 +183,12 @@ There are three main _statuses_ for a deployment that can be identified by looki
   ![Active deployment](/assets/create_a_prerelease/active_deployment.png){: style="max-width: 650px;" class="example-img" loading="lazy"}
   ![Inactive deployment](/assets/create_a_prerelease/inactive_deployment.png){: style="max-width: 650px;" class="example-img" loading="lazy"}
   {: id="successful-deployment"}
-  
+
 - **In Progress**<br>
   The deployment is still ongoing. It will soon become [successful](#successful-deployment) or [fail](#failed-deployment).<br>
   ![In progress deployment](/assets/create_a_prerelease/in_progress_deployment.png){: style="max-width: 650px;" class="example-img" loading="lazy"}
   {: id="in-progress-deployment"}
-  
+
 - **Failed**<br>
   The deployment failed and the CI/CD log can be viewed by clicking on [Show environments](https://github.com/ACCESS-NRI/ACCESS-OM2/pull/94#:~:text=Show%20environments) in the GitHub Environment diaglog box.<br>
   ![Failed deployment](/assets/create_a_prerelease/failed_deployment.png){: style="max-width: 650px;" class="example-img" loading="lazy"}
@@ -201,7 +203,7 @@ If we open a PR to the [ACCESS-OM2 deployment repository][om2 repo] with our `up
 #### 4. Merge or close the PR
 If the PR gets merged, an official ACCESS-NRI release build of the given model will be created, along with an associated GitHub Release.
 
-!!! warning 
+!!! warning
     When a PR is closed (this includes merged PRs), regardless if it was merged or not, all the related prereleases deployments get removed.<br>
     You can retrieve a single prerelease build by [creating a _Spack_ environment](https://spack.readthedocs.io/en/latest/environments.html#creating-a-managed-environment) using the `spack.yaml`/`spack.lock` artifact related to the specific commit.
 
